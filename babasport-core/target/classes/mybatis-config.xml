@@ -6,7 +6,7 @@
 	
 	<!-- cn.itcast.core.bean.User   别名：User -->
 	<typeAliases>
-		<package name="cn.itcast.core.bean"/>
+		<package name="com.zhangzhen.core.bean"/>
 	</typeAliases>
 	
 	<!-- Mapper的位置  （写Sql语句的）

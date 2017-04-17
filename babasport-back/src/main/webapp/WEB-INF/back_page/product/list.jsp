@@ -22,45 +22,28 @@ function isShow() {
 	f.action="/product/isShow.do";
 	f.submit();
 }
-//下架
-function isNotShow() {
-	if(Pn.checkedCount('ids')<=0) {
-		alert("请至少选择一个!");
-		return;
-	}
-	if(!confirm("确定下架吗?")) {
-		return;
-	}
-	var f = getTableForm();
-	f.action="/product/isNotShow.do";
-	f.submit();
-}
-function changePageNo(){
-	$("input[name='pageNo']").val(1);
-}
 </script>
 </head>
 <body>
 <div class="box-positon">
 	<div class="rpos">当前位置: 商品管理 - 列表</div>
 	<form class="ropt">
-		<input class="add" type="button" value="添加" onclick="javascript:window.location.href='/product/toAdd.do'"/>
+		<input class="add" type="button" value="添加" onclick="javascript:window.location.href='toAdd.do'"/>
 	</form>
 	<div class="clear"></div>
 </div>
 <div class="body-box">
 <form action="/product/list.do" method="post" style="padding-top:5px;">
-名称: <input type="text" name="name" value="${name}"/>
-	<select name="brandId">
+名称: <input type="text" name="name" value="${name }"/>
+	<select name="brandId">  
 		<option value="">请选择品牌</option>
 		<c:forEach items="${brands }" var="brand">
-		
-		<option value="${brand.id }" <c:if test="${brand.id }==${brandId }">selected="selected"</c:if>>${brand.name }</option>
+		<option value="${brand.id }" <c:if test="${brand.id == brandId}">selected="selected"</c:if>>${brand.name }</option>
 		</c:forEach>
 	</select>
 	<select name="isShow">
-		<option value="1" <c:if test="${isShow==true}">selected="selected"</c:if>>上架</option>
-		<option value="0" <c:if test="${isShow==false}">selected="selected"</c:if>>下架</option>
+		<option value="true" <c:if test="${isShow}">selected="selected"</c:if>>上架</option>
+		<option value="false" <c:if test="${!isShow}">selected="selected"</c:if>>下架</option>
 	</select>
 	<input type="submit" class="query" value="查询"/>
 </form>
@@ -80,43 +63,35 @@ function changePageNo(){
 		</tr>
 	</thead>
 	<tbody class="pn-ltbody">
-	<c:forEach items="${pagination.list}" var="product">
+		<c:forEach items="${pagination.list }" var="product">
 		<tr bgcolor="#ffffff" onmouseover="this.bgColor='#eeeeee'" onmouseout="this.bgColor='#ffffff'">
-			<td><input type="checkbox" name="ids" value="${product.id}"/></td>
-			<td>${product.id}</td>
-			<td align="center">${product.name}</td>
-			<td align="center"><img width="50" height="50" src="${product.img.allUrl}"/></td>
+			<td><input type="checkbox" name="ids" value="${product.id }"/></td>
+			<td>${product.id }</td>
+			<td align="center">${product.name }</td>
+			<td align="center"><img width="50" height="50" src="${product.img.allUrl }"/></td>
+			<td align="center">是</td>
+			<td align="center">是</td>
+			<td align="center">是</td>
 			<td align="center">
-			<c:if test="${product.isNew}">新品</c:if>
-			<c:if test="${!product.isNew}">旧品</c:if>
+			<c:if test="${product.isShow }">上架</c:if>
+			<c:if test="${!product.isShow }">下架</c:if>
 			</td>
 			<td align="center">
-			<c:if test="${product.isHot}">是</c:if>
-			<c:if test="${!product.isHot}">否</c:if>
-			</td>
-			<td align="center">
-			<c:if test="${product.isCommend}">推荐</c:if>
-			<c:if test="${!product.isCommend}">不推荐</c:if>
-			</td>
-			<td align="center">
-			<c:if test="${product.isShow}">上架</c:if>
-			<c:if test="${!product.isShow}">下架</c:if>
-			</td>
-			<td align="center">
-			<a href="#" class="pn-opt">查看</a> | <a href="/product/toEdit.do?productId=${product.id}" class="pn-opt">修改</a> | <a href="#" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a> | <a href="/sku/list.do?productId=${product.id}" class="pn-opt">库存</a>
+			<a href="#" class="pn-opt">查看</a> | <a href="#" class="pn-opt">修改</a> | <a href="#" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a> | <a href="/sku/list.do?productId=${product.id }" class="pn-opt">库存</a>
 			</td>
 		</tr>
-	</c:forEach>
+		</c:forEach>
+		
 	</tbody>
 </table>
 <div class="page pb15">
 	<span class="r inb_a page_b">
-	<c:forEach items="${pagination.pageView}" var="page">
+		<c:forEach items="${pagination.pageView }" var="page">
 			${page }
 		</c:forEach>
 	</span>
 </div>
-<div style="margin-top:15px;"><input class="del-button" type="button" value="删除" onclick="optDelete();"/><input class="add" type="button" value="上架" onclick="isShow();"/><input class="del-button" type="button" value="下架" onclick="isNotShow();"/></div>
+<div style="margin-top:15px;"><input class="del-button" type="button" value="删除" onclick="optDelete();"/><input class="add" type="button" value="上架" onclick="isShow();"/><input class="del-button" type="button" value="下架" onclick="optDelete();"/></div>
 </form>
 </div>
 </body>

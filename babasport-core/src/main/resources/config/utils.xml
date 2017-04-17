@@ -15,7 +15,7 @@
 
 	<!-- Session提供类 -->
 	<!-- 本地Session -->
-	<bean id="sessionProvider" class="cn.itcast.common.web.session.HttpSessionProvider"/>
+	<bean id="sessionProvider" class="com.zhangzhen.common.web.session.HttpSessionProvider"/>
 	<!-- 远程Session -->
 		<!-- 用户名在Redis服务器存活时间  60 -->
 <!-- 	<bean class="cn.itcast.common.web.session.CacheSessionProvider">

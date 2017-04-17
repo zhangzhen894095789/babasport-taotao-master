@@ -5,8 +5,9 @@
 <head>
 <title>babasport-edit</title>
 <script type="text/javascript">
+//上传 （异步）
 function uploadPic(){
-	//jquery.form.js
+	//本次 jquery.form.js
 	var options = {
 			url : "/upload/uploadPic.do",
 			type : "post",
@@ -14,17 +15,19 @@ function uploadPic(){
 			success : function(data){
 				//执行回调的程序 
 				//img src = data.path 
-				$("#imgSize1ImgSrc").attr("src",data.url);
+				$("#allUrl").attr("src",data.url);
 				$("#path").val(data.path);
 			}
-	}
+	};
+	//使用form
 	$("#jvForm").ajaxSubmit(options);
+	
 }
 </script>
 </head>
 <body>
 <div class="box-positon">
-	<div class="rpos">当前位置: 品牌管理 - 修改</div>
+	<div class="rpos">当前位置: 品牌管理 - 添加</div>
 	<form class="ropt">
 		<input type="submit" onclick="this.form.action='v_list.shtml';" value="返回列表" class="return-button"/>
 	</form>
@@ -32,14 +35,14 @@ function uploadPic(){
 </div>
 <div class="body-box" style="float:right">
 	<form id="jvForm" action="/brand/edit.do" method="post">
-		<input type="hidden" value="${brand.id}" name="id"/>
+		<input type="hidden" value="${brand.id }" name="id"/>
 		<table cellspacing="1" cellpadding="2" width="100%" border="0" class="pn-ftable">
 			<tbody>
 				<tr>
 					<td width="20%" class="pn-flabel pn-flabel-h">
 						<span class="pn-frequired">*</span>
 						品牌名称:</td><td width="80%" class="pn-fcontent">
-						<input type="text" class="required" name="name" value="${brand.name}" maxlength="100"/>
+						<input type="text" class="required" name="name" value="${brand.name }" maxlength="100"/>
 					</td>
 				</tr>
 				<tr>
@@ -53,7 +56,7 @@ function uploadPic(){
 				<tr>
 					<td width="20%" class="pn-flabel pn-flabel-h"></td>
 						<td width="80%" class="pn-fcontent">
-						<img width="100" height="100" id="imgSize1ImgSrc" src="${brand.allUrl }"/>
+						<img width="100" height="100" id="allUrl" src="${brand.allUrl }"/>
 						<input  type="hidden" id="path" name="imgUrl" value="${brand.imgUrl }"/>
 						<input type="file" onchange="uploadPic()" name="pic"/>
 					</td>
@@ -61,20 +64,20 @@ function uploadPic(){
 				<tr>
 					<td width="20%" class="pn-flabel pn-flabel-h">
 						品牌描述:</td><td width="80%" class="pn-fcontent">
-						<input type="text" class="required" name="description" value="${brand.description}" maxlength="80"  size="60"/>
+						<input type="text" class="required" name="description" value="${brand.description }" maxlength="80"  size="60"/>
 					</td>
 				</tr>
 				<tr>
 					<td width="20%" class="pn-flabel pn-flabel-h">
 						排序:</td><td width="80%" class="pn-fcontent">
-						<input type="text" class="required" name="sort" value="${brand.sort}" maxlength="80"/>
+						<input type="text" class="required" name="sort" value="${brand.sort }" maxlength="80"/>
 					</td>
 				</tr>
 				<tr>
 					<td width="20%" class="pn-flabel pn-flabel-h">
 						是否可用:</td><td width="80%" class="pn-fcontent">
-						<input type="radio" name="isDisplay" value="1" <c:if test="${brand.isDisplay==1}">checked="checked"</c:if> />可用
-						<input type="radio" name="isDisplay" value="0" <c:if test="${brand.isDisplay==0}">checked="checked"</c:if>/>不可用
+						<input type="radio" name="isDisplay" value="1" <c:if test="${brand.isDisplay == 1 }">checked="checked"</c:if>/>可用
+						<input type="radio" name="isDisplay" value="0" <c:if test="${brand.isDisplay == 0 }">checked="checked"</c:if>/>不可用
 					</td>
 				</tr>
 			</tbody>

@@ -46,13 +46,14 @@ $(function(){
 				var fck = new FCKeditor("productdesc");
 				fck.BasePath = "/res/fckeditor/";
 				fck.Height = 400 ;
-				//上传路径设置
-				fck.Config["ImageUploadURL"]="/upload/uploadFck.do"
+				//上传路径 设置
+				fck.Config["ImageUploadURL"] = "/upload/uploadFck.do";
 				fck.ReplaceTextarea();
 			}
 		});
 	});
 });
+
 //上传 （异步）
 function uploadPic(){
 	//本次 jquery.form.js
@@ -87,7 +88,7 @@ function uploadPic(){
 <a href="javascript:void(3);" ref="#tab_3" title="商品参数" class="nor">包装清单</a>
 </span></h2>
 <div class="body-box" style="float:right">
-	<form id="jvForm" action="/product/add.do" method="post" enctype="multipart/form-data">
+	<form id="jvForm" action="add.do" method="post" enctype="multipart/form-data">
 		<table cellspacing="1" cellpadding="2" width="100%" border="0" class="pn-ftable">
 			<tbody id="tab_1">
 				<tr>
@@ -96,8 +97,8 @@ function uploadPic(){
 						商品类型:</td><td width="80%" class="pn-fcontent">
 								<select name="typeId">
 									<option value="">请选择</option>
-									<c:forEach items="${types}" var="type">
-									<option value="${type.id}">${type.name}</option>
+									<c:forEach items="${types }" var="type">
+										<option value="${type.id }">${type.name }</option>
 									</c:forEach>
 								</select>
 					</td>
@@ -114,9 +115,9 @@ function uploadPic(){
 						商品品牌:</td><td width="80%" class="pn-fcontent">
 						<select name="brandId">
 							<option value="">请选择品牌</option>
-						<c:forEach items="${brands}" var="brand">
-						<option value="${brand.id}">${brand.name}</option>
-						</c:forEach>
+							<c:forEach items="${brands }" var="brand">
+								<option value="${brand.id }">${brand.name }</option>
+							</c:forEach>
 						</select>
 					</td>
 				</tr>
@@ -130,7 +131,7 @@ function uploadPic(){
 					<td width="20%" class="pn-flabel pn-flabel-h">
 						材质:</td><td width="80%" class="pn-fcontent">
 							<c:forEach items="${features }" var="feature">
-							<input type="checkbox" value="${feature.id}" name="features"/>${feature.name}
+							<input type="checkbox" value="${feature.id }" name="features"/>${feature.name }
 							</c:forEach>
 					</td>
 				</tr>
@@ -138,8 +139,8 @@ function uploadPic(){
 					<td width="20%" class="pn-flabel pn-flabel-h">
 						<span class="pn-frequired">*</span>
 						颜色:</td><td width="80%" class="pn-fcontent">
-							<c:forEach items="${colors}" var="color">
-							<input type="checkbox" value="${color.id}" name="colors"/>${color.name}
+							<c:forEach items="${colors }" var="color">
+							<input type="checkbox" value="${color.id }" name="colors"/>${color.name }
 							</c:forEach>
 					</td>
 				</tr>
@@ -173,7 +174,7 @@ function uploadPic(){
 				<tr>
 					<td width="20%" class="pn-flabel pn-flabel-h"></td>
 						<td width="80%" class="pn-fcontent">
-							<img width="100" height="100" id="allUrl"/>
+						<img width="100" height="100" id="allUrl"/>
 						<input  type="hidden" id="path" name="img.url"/>
 						<input type="file" onchange="uploadPic()" name="pic"/>
 					</td>

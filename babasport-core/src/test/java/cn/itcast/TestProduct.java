@@ -1,15 +1,10 @@
 package cn.itcast;
 
-import java.util.List;
-
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import cn.itcast.common.junit.SpringJunitTest;
 import cn.itcast.core.bean.product.Product;
-import cn.itcast.core.bean.product.ProductQuery;
-import cn.itcast.core.bean.product.ProductQuery.Criteria;
 import cn.itcast.core.dao.product.ProductDao;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 /**
  * 测试product接口
  * @author Administrator

@@ -21,14 +21,14 @@
 			<!-- 拦截器规则 拦截所有（web.xml 配置  *.shtml)-->
 			<mvc:mapping path="/**/*"/>
 			<!-- 拦截器类 -->
-			<bean class="cn.itcast.core.web.springmvc.SpringmvcInterceptor"></bean>
+			<bean class="com.zhangzhen.core.web.springmvc.SpringmvcInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
 
 
 
 	<!-- Springmvc的扫描  只包括@Controller-->
-	<context:component-scan base-package="cn.itcast" use-default-filters="false">
+	<context:component-scan base-package="com.zhangzhen" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	<!-- 现成的标签 配置 处理器映射器 处理器适配器 -->
@@ -39,9 +39,7 @@
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<!-- 配置多个转换器 -->
 		<property name="converters">
-			<list>
-				<bean class="cn.itcast.common.conversion.CustomTrimConverter" />
-			</list>
+				<bean class="com.zhangzhen.common.conversion.CustomTrimConverter" />
 		</property>
 	</bean>
 	<!-- 视图解释器  jsp视图 -->

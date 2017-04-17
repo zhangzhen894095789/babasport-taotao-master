@@ -5,33 +5,43 @@
 <head>
 <title>babasport-list</title>
 <script type="text/javascript">
-	function updateSku(skuId){
-		//点击修改按钮触发的函数
-		$("#m"+skuId).attr("disabled",false);
-		$("#p"+skuId).attr("disabled",false);
-		$("#s"+skuId).attr("disabled",false);
-		$("#l"+skuId).attr("disabled",false);
-		$("#f"+skuId).attr("disabled",false);
-		
-	}
+//点击修改
+function updateSku(skuId){
+	//市场价格
+	$("#m" + skuId).attr("disabled",false);
+	//售价
+	$("#p" + skuId).attr("disabled",false);
+	//库存
+	$("#s" + skuId).attr("disabled",false);
+	//运费
+	$("#f" + skuId).attr("disabled",false);
+	//购物限制
+	$("#l" + skuId).attr("disabled",false);
 	
-	function addSku(skuId){
-		//点击保存按钮触发的函数
-		var m = $("#m"+skuId).attr("disabled",true).val();
-		var p = $("#p"+skuId).attr("disabled",true).val();
-		var s = $("#s"+skuId).attr("disabled",true).val();
-		var l = $("#l"+skuId).attr("disabled",true).val();
-		var f = $("#f"+skuId).attr("disabled",true).val();
-		alert(m);
-		alert(p);
-		alert(s);
-		//发送ajax请求到controller，更新库存
-		//不会的查找jquery帮助文档
-		$.post("/sku/update.do",{"marketPrice":m,"price":p, "stock":s, "deliveFee":f,"upperLimit":l,"id":skuId},
-				   function(data){
-				     alert(data.message); // John
-		}, "json");
-	}
+}
+//点击保存
+function addSku(skuId){
+	//市场价格
+	var m = $("#m" + skuId).attr("disabled",true).val();
+	//售价
+	var p = $("#p" + skuId).attr("disabled",true).val();
+	//库存
+	var s = $("#s" + skuId).attr("disabled",true).val();
+	//运费
+	var f = $("#f" + skuId).attr("disabled",true).val();
+	//购物限制
+	var l = $("#l" + skuId).attr("disabled",true).val();
+	
+	//请求后台 所数据进行变更   后台打算用Sku对象接收
+	//设置Url
+	var url = "/sku/update.do";
+	//参数
+	var params = {"marketPrice" : m,"price" : p , "stock" : s, "deliveFee" : f , "upperLimit" : l,"id" : skuId};
+	$.post(url,params,function(data){
+		//回调信息 //JSON 格式    {message:'保存成功!'}
+		alert(data.message);
+	},"json");
+}
 </script>
 </head>
 <body>
@@ -58,24 +68,22 @@
 		</tr>
 	</thead>
 	<tbody class="pn-ltbody">
-		<c:forEach items="${skus}" var="sku">
+		<c:forEach items="${skus }" var="sku">
 			<tr bgcolor="#ffffff" onmouseover="this.bgColor='#eeeeee'" onmouseout="this.bgColor='#ffffff'">
-				<td><input type="checkbox" name="ids" value="${sku.id}"/></td>
+				<td><input type="checkbox" name="ids" value="${sku.id }"/></td>
 				<td>${sku.productId }</td>
-				<td align="center">${sku.color.name}</td>
+				<td align="center">${sku.color.name }</td>
 				<td align="center">${sku.size }</td>
-				<td align="center"><input type="text" id="m${sku.id}" value="${sku.marketPrice}" disabled="disabled" size="10"/></td>
-				<td align="center"><input type="text" id="p${sku.id}" value="${sku.price }" disabled="disabled" size="10"/></td>
-				<td align="center"><input type="text" id="s${sku.id}" value="${sku.stock }" disabled="disabled" size="10"/></td>
-				<td align="center"><input type="text" id="l${sku.id}" value="${sku.upperLimit }" disabled="disabled" size="10"/></td>
-				<td align="center"><input type="text" id="f${sku.id}" value="${sku.deliveFee }" disabled="disabled" size="10"/></td>
-				<td align="center">
-				<c:if test="${sku.skuType }">不是</c:if>
-				<c:if test="${!sku.skuType }">是</c:if>
-				</td>
-				<td align="center"><a href="javascript:updateSku(${sku.id})" class="pn-opt">修改</a> | <a href="javascript:addSku(${sku.id})" class="pn-opt">保存</a></td>
+				<td align="center"><input type="text" id="m${sku.id }" value="${sku.marketPrice }" disabled="disabled" size="10"/></td>
+				<td align="center"><input type="text" id="p${sku.id }" value="${sku.price }" disabled="disabled" size="10"/></td>
+				<td align="center"><input type="text" id="s${sku.id }" value="${sku.stock }" disabled="disabled" size="10"/></td>
+				<td align="center"><input type="text" id="l${sku.id }" value="${sku.upperLimit }" disabled="disabled" size="10"/></td>
+				<td align="center"><input type="text" id="f${sku.id }" value="${sku.deliveFee }" disabled="disabled" size="10"/></td>
+				<td align="center">不是</td>
+				<td align="center"><a href="javascript:updateSku('${sku.id }')" class="pn-opt">修改</a> | <a href="javascript:addSku('${sku.id }')" class="pn-opt">保存</a></td>
 			</tr>
 		</c:forEach>
+		
 	</tbody>
 </table>
 </form>

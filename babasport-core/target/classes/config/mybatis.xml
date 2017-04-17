@@ -23,6 +23,6 @@
 		<!-- 配置Mybatis扫描  -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- 指定基本包  Mybatis的 Dao接口与Mapper的位置  （指定包） -->
-		<property name="basePackage" value="cn.itcast.core.dao"/>
+		<property name="basePackage" value="com.zhangzhen.core.dao"/>
 	</bean>
 </beans>

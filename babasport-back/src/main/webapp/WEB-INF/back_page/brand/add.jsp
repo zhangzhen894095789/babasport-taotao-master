@@ -5,21 +5,24 @@
 <head>
 <title>babasport-add</title>
 <script type="text/javascript">
-	function uploadPic(){
-		//jquery.form.js
-		var options = {
-				url : "/upload/uploadPic.do",
-				type : "post",
-				dataType : "json",
-				success : function(data){
-					//执行回调的程序 
-					//img src = data.path 
-					$("#allUrl").attr("src",data.url);
-					$("#path").val(data.path);
-				}
-		}
-		$("#jvForm").ajaxSubmit(options);
-	}
+//上传 （异步）
+function uploadPic(){
+	//本次 jquery.form.js
+	var options = {
+			url : "/upload/uploadPic.do",
+			type : "post",
+			dataType : "json",
+			success : function(data){
+				//执行回调的程序 
+				//img src = data.path 
+				$("#allUrl").attr("src",data.url);
+				$("#path").val(data.path);
+			}
+	};
+	//使用form
+	$("#jvForm").ajaxSubmit(options);
+	
+}
 </script>
 </head>
 <body>
@@ -52,8 +55,8 @@
 				<tr>
 					<td width="20%" class="pn-flabel pn-flabel-h"></td>
 						<td width="80%" class="pn-fcontent">
-						<img width="100"  height="100" id="allUrl"/>
-						<input type="hidden" id="path" name="imgUrl"/>
+						<img width="100" height="100" id="allUrl"/>
+						<input  type="hidden" id="path" name="imgUrl"/>
 						<input type="file" onchange="uploadPic()" name="pic"/>
 					</td>
 				</tr>

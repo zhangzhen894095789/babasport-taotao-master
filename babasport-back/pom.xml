@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>cn.itcast.babasport</groupId>
+	<groupId>com.zhangzhen.babasport</groupId>
 	<artifactId>babasport-back</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
@@ -49,7 +49,7 @@
 	</build>
 	<!-- 继承父项目 -->
 	<parent>
-		<groupId>cn.itcast.babasport</groupId>
+		<groupId>com.zhangzhen.babasport</groupId>
 		<artifactId>parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
@@ -57,7 +57,7 @@
 	<!-- 依赖管理之后台 -->
 	<dependencies>
 		<dependency>
-			<groupId>cn.itcast.babasport</groupId>
+			<groupId>com.zhangzhen.babasport</groupId>
 			<artifactId>babasport-core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
@@ -235,6 +235,7 @@
 		</dependency>
 
 		<!--page -->
+		<!--page -->
 		<dependency>
 			<groupId>cn.itcast</groupId>
 			<artifactId>page</artifactId>
@@ -255,8 +256,13 @@
 		<!-- FastDFS client -->
 
 		<dependency>
-			<groupId>fastdfs_client</groupId>
-			<artifactId>fastdfs_client</artifactId>
+
+			<groupId>org.csource</groupId>
+
+			<artifactId>fastdfs-client-java</artifactId>
+
+			<version>5.0.4</version>
+
 		</dependency>
 	</dependencies>
 

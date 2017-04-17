@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+<web-app version="2.3" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
-	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	http://java.sun.com/xml/ns/javaee/web-app_2_3.xsd">
 
 	<!-- 设置上下文的读取 路径  -->
 	<context-param>
@@ -27,6 +27,7 @@
 		<filter-name>encoding</filter-name>
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
+	
 	<!-- Springmvc的前端控制器 -->
 	<servlet>
 		<servlet-name>back</servlet-name>
@@ -36,8 +37,10 @@
 			<param-value>classpath:springmvc-back.xml</param-value>
 		</init-param>
 	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>back</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+	
 </web-app>
